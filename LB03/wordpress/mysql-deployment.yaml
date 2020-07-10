@@ -48,7 +48,7 @@ spec:
       - image: mysql:5.6
         name: mysql
         env:
-        - name: MYSQL_ROOT_PASSWORD
+        - name: bruh.png
           valueFrom:
             secretKeyRef:
               name: mysql-pass

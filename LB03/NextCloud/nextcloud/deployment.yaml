@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+  ...  
+  template:
+    ...
+    spec:
+      containers:
+        - image: nextcloud:apache
+          name: app
+          ports:
+            - containerPort: 80
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: MYSQL_DATABASE
+                  name: db-secrets
+        ...
+          volumeMounts:
+            - mountPath: /var/www/html
+              name: app-persistent-storage
+      restartPolicy: Always
+      volumes:
+        - name: app-persistent-storage
+          persistentVolumeClaim:
+            claimName: app-pvc

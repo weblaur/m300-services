@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"C:/Users/Marc/Documents/TBZ/M300/M300-Services","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

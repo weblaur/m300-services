@@ -1,0 +1,19 @@
+namespace: nextcloud
+namePrefix: nextcloud-commonLabels:
+  app: nextcloud
+  version: "15"bases:
+  - redis
+  - mariadb
+  - nextcloud
+  - cronpatchesStrategicMerge:
+  - patch.yamlvars:
+  - name: DB_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+      name: db
+  - name: REDIS_SERVICE
+    objref:
+      apiVersion: v1
+      kind: Service
+   name: redis

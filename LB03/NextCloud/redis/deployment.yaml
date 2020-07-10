@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment ...
+spec:  ...
+  template: ...
+    spec:
+      containers:
+        - image: redis:alpine
+          name: redis
+          ports:
+            - containerPort: 6379

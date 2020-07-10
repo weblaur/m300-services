@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+...
+spec:
+...
+  template:
+    spec:
+      containers:
+        - name: db
+          image: mariadb:latest
+          ports:
+            - containerPort: 3306
+          args:
+            - --transaction-isolation=READ-COMMITTED
+            - --binlog-format=ROW
+            - --max-connections=1000
+          env:
+            - name: MYSQL_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  key: MYSQL_DATABASE
+                  name: db-secrets
+          ...
+          volumeMounts:
+            - mountPath: /var/lib/mysql
+              name: db-persistent-storage
+      restartPolicy: Always
+      volumes:
+        - name: db-persistent-storage
+          persistentVolumeClaim:
+   claimName: db-pvc
